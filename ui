@@ -1,1 +1,50 @@
-BUILDING
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+local Window = OrionLib:MakeWindow({Name = "HS Studios", HidePremium = false, SaveConfig = true, ConfigFolder = "HS Studios", IntroEnabled = true, IntroText = "HS Studios"})
+
+local Tab = Window:MakeTab({
+	Name = "Arsenal",
+	Icon = "",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "Main"
+})
+
+Tab:AddButton({
+	Name = "AimBot (detected by users)",
+	Callback = function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/HSstudios1/main/main/aimbot', true))()
+	end    
+})
+
+Tab:AddButton({
+	Name = "Silentaim (undetected by users)",
+	Callback = function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/HSstudios1/main/main/silentaim', true))()
+	end    
+})
+
+Tab:AddButton({
+	Name = "ESP (undetected | detected by users)",
+	Callback = function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/HSstudios1/main/main/ESP', true))()
+	end    
+})
+
+Tab:AddButton({
+	Name = "Disable Cheats (Rejoin)",
+	Callback = function()
+		OrionLib:MakeNotification({
+			Name = "Disable Cheats",
+			Content = "Rejoining in 10 seconds!",
+			Image = "rbxassetid://4483345998",
+			Time = 5
+		})
+		wait(10)
+		local ts = game:GetService("TeleportService")
+		local p = game:GetService("Players").LocalPlayer
+		ts:TeleportToPlaceInstance(game.PlaceId, game.JobId, p)
+	end    
+})
