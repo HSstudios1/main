@@ -1,50 +1,21 @@
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Mercury = loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
+local Player = game.Players.LocalPlayer
 
-local Window = OrionLib:MakeWindow({Name = "HS Studios", HidePremium = false, SaveConfig = true, ConfigFolder = "HS Studios", IntroEnabled = true, IntroText = "HS Studios"})
+local GUI = Mercury:Create{
+	Name = "HS Studios",
+	Size = UDim2.fromOffset(600, 400),
+	Theme = Mercury.Themes.Dark,
+	Link = "https://github.com/deeeity/mercury-lib"
+}
 
-local Tab = Window:MakeTab({
-	Name = "Arsenal",
-	Icon = "",
-	PremiumOnly = false
-})
-
-local Section = Tab:AddSection({
-	Name = "Main"
-})
-
-Tab:AddButton({
-	Name = "AimBot (detected by users)",
-	Callback = function()
-		loadstring(game:HttpGet('https://raw.githubusercontent.com/HSstudios1/main/main/aimbot', true))()
-	end    
-})
-
-Tab:AddButton({
-	Name = "Silentaim (undetected by users)",
-	Callback = function()
-		loadstring(game:HttpGet('https://raw.githubusercontent.com/HSstudios1/main/main/silentaim', true))()
-	end    
-})
-
-Tab:AddButton({
-	Name = "ESP (undetected | detected by users)",
-	Callback = function()
-		loadstring(game:HttpGet('https://raw.githubusercontent.com/HSstudios1/main/main/ESP', true))()
-	end    
-})
-
-Tab:AddButton({
-	Name = "Disable Cheats (Rejoin)",
-	Callback = function()
-		OrionLib:MakeNotification({
-			Name = "Disable Cheats",
-			Content = "Rejoining in 10 seconds!",
-			Image = "rbxassetid://4483345998",
-			Time = 5
-		})
-		wait(10)
-		local ts = game:GetService("TeleportService")
-		local p = game:GetService("Players").LocalPlayer
-		ts:TeleportToPlaceInstance(game.PlaceId, game.JobId, p)
-	end    
-})
+GUI:Notification{
+		Title = "Key & Login",
+		Text = "Correct key logged in as "..Player.Name..".",
+		Duration = 10,
+		Callback = function() end
+	}
+	
+local Tab = GUI:Tab{
+	Name = "Key System",
+	Icon = "rbxassetid://8569322835"
+}	
