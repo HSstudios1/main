@@ -1,1 +1,67 @@
+local Mercury = loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
+local Player = game.Players.LocalPlayer
 
+local GUI = Mercury:Create{
+	Name = "HS Studios",
+	Size = UDim2.fromOffset(600, 400),
+	Theme = Mercury.Themes.Dark,
+	Link = "https://github.com/deeeity/mercury-lib"
+}
+
+_G.Key = "test"
+_G.KeyInput = "string"
+
+function MakeScriptHub()
+	loadstring(game:HttpGet(('https://raw.githubusercontent.com/HSstudios1/main/main/ui')))()
+end
+
+function CorrectKeyNotification()
+	GUI:Notification{
+		Title = "Key",
+		Text = "Correct key!",
+		Duration = 3,
+		Callback = function() end
+	}
+	MakeScriptHub()
+end
+
+function WrongKeyNotification()
+	GUI:Notification{
+		Title = "Key",
+		Text = "Wrong key!",
+		Duration = 3,
+		Callback = function() end
+	}
+end
+
+GUI:Notification{
+	Title = "Logged in!",
+	Text = "Loggged in as "..Player.Name..".",
+	Duration = 10,
+	Callback = function() end
+}
+
+local Tab = GUI:Tab{
+	Name = "Key System",
+	Icon = "rbxassetid://8569322835"
+}
+
+Tab:Textbox{
+	Name = "Key",
+	Callback = function(text)
+	_G.KeyInput = text	
+	end
+}
+
+Tab:Button{
+	Name = "Check key",
+	Description = nil,
+	Callback = function()
+		if _G.KeyInput == _G.Key then
+			CorrectKeyNotification()
+			Mercury:Destroy()
+		else
+			WrongKeyNotification()
+		end
+	end
+}
